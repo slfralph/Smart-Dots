@@ -1,13 +1,13 @@
 var WIDTH, HEIGHT;
 var FRAMERATE = 30;
 var DRAW_BUFFER = 20;
-var RANDOM_START_AND_END = true;
+var RANDOM_START_AND_END = false;
 var NUM_DOTS = 20;
 var DNA_SIZE = 200;
 var POS_DELTA = 10;
 
-var MUTATION_CHANCE = .005;
-var MOST_FIT_CHANCE = .5;
+var MUTATION_CHANCE = .01;
+var MOST_FIT_CHANCE = .55;
 
 var direction = ['U', 'D', 'L', 'R'];
 var start;
@@ -153,13 +153,13 @@ function updatePositions() {
 
   for (d of dots) {
     var dir = d.dna[dna_pos];
-    if (dir == 'U' && d.y > 0) {
+    if (dir == 'U' && d.y > DRAW_BUFFER) {
       d.y = d.y - POS_DELTA;
-    } else if (dir == 'D' && d.y < HEIGHT) {
+    } else if (dir == 'D' && d.y < HEIGHT - DRAW_BUFFER) {
       d.y = d.y + POS_DELTA;
-    } else if (dir == 'L' && d.x > 0) {
+    } else if (dir == 'L' && d.x > DRAW_BUFFER) {
       d.x = d.x - POS_DELTA;
-    } else if (dir == 'R' && d.x < WIDTH) {
+    } else if (dir == 'R' && d.x < WIDTH - DRAW_BUFFER) {
       d.x = d.x + POS_DELTA;
     }
   }
